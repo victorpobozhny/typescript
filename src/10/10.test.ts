@@ -1,9 +1,9 @@
 import {
-    addNewJob,
+    addNewJob, CompaniesType,
     makeHairstyle,
     moveUser,
     readNewBooks, removeBook,
-    updateBooks, updateCompanyName,
+    updateBooks, updateCompanyName, updateCompanyTitle,
     updateLaptop,
     UserType,
     UserWithBooks,
@@ -155,4 +155,20 @@ test('job', () => {
     const userWithUpdatedNameOfCompanies = updateCompanyName(user, 1, 'NewEpam')
     expect(userWithUpdatedNameOfCompanies.companies.length).toBe(2)
     expect(userWithUpdatedNameOfCompanies.companies[0].title).toBe('NewEpam')
+})
+test('companies tests', () => {
+
+    let companies: CompaniesType = {
+        'Dimych' : [{id: 1, title: 'Epam'}, {id: 2, title: 'IT-Incubator'}],
+        'Alex': [{id: 1, title: 'Epam'}]
+    }
+
+    const updatedCompanies: CompaniesType = updateCompanyTitle(companies, 'Dimych', 'EPAM', 1)
+
+
+
+expect(companies['Dimych'][0].title).toBe('Epam')
+    expect(updatedCompanies['Dimych'][0].title).toBe('EPAM')
+
+
 })
